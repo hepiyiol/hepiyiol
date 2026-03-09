@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hepiyiol Hesap Silme Talebi - Account Deletion Request">
+    <title>Hesap Silme - Account Deletion | Hepiyiol</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .logo {
+            font-size: 36px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .language-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .language-switch button {
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .language-switch button.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .language-switch button:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #667eea;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        h3 {
+            font-size: 20px;
+            color: #764ba2;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .update-date {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .warning-box strong {
+            color: #856404;
+        }
+
+        .info-box {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .delete-form {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            border: 2px solid #667eea;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .contact-info {
+            background: #f9f9f9;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .data-table th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+
+        .data-table tr:hover {
+            background: #f5f5f5;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .lang-tr { display: block; }
+        .lang-en { display: none; }
+
+        .step-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            .language-switch {
+                position: relative;
+                top: 0;
+                right: 0;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+
+            .logo {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="language-switch">
+        <button onclick="switchLanguage('tr')" class="lang-btn active" data-lang="tr">Türkçe</button>
+        <button onclick="switchLanguage('en')" class="lang-btn" data-lang="en">English</button>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo">HEPİYİOL</div>
+        </div>
+
+        <!-- TÜRKÇE İÇERİK -->
+        <div class="lang-tr">
+            <h1>Hesap Silme Talebi</h1>
+            <p class="update-date">Son Güncelleme: 9 Mart 2026</p>
+
+            <div class="warning-box">
+                <p><strong>⚠️ Önemli Uyarı:</strong> Hesabınızı silmek kalıcı bir işlemdir ve bu işlem geri alınamaz. Hesabınızla ilişkili tüm verileriniz silinecektir. Bu işlemi yapmadan önce lütfen dikkatlice düşünün.</p>
+            </div>
+
+            <h2>Hesap Silme Süreci</h2>
+            <p>Hepiyiol hesabınızı silmek için aşağıdaki adımları takip edebilirsiniz:</p>
+
+            <h3>Yöntem 1: Mobil Uygulama Üzerinden</h3>
+            <ol>
+                <li><span class="step-number">1</span>Hepiyiol mobil uygulamasını açın</li>
+                <li><span class="step-number">2</span>Profil sayfanıza gidin</li>
+                <li><span class="step-number">3</span>"Hesap Ayarları" menüsüne tıklayın</li>
+                <li><span class="step-number">4</span>"Hesabımı Sil" seçeneğini bulun</li>
+                <li><span class="step-number">5</span>Silme nedeninizi belirtin (opsiyonel)</li>
+                <li><span class="step-number">6</span>İşlemi onaylamak için şifrenizi girin</li>
+                <li><span class="step-number">7</span>"Hesabımı Kalıcı Olarak Sil" butonuna tıklayın</li>
+            </ol>
+
+            <h3>Yöntem 2: E-posta ile Talep</h3>
+            <div class="delete-form">
+                <p><strong>Aşağıdaki formu doldurarak hesap silme talebinde bulunabilirsiniz:</strong></p>
+                <form id="deleteForm">
+                    <div class="form-group">
+                        <label for="email">E-posta Adresiniz *</label>
+                        <input type="email" id="email" name="email" required placeholder="ornek@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Telefon Numaranız *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+90 5XX XXX XX XX">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reason">Silme Nedeni (Opsiyonel)</label>
+                        <select id="reason" name="reason">
+                            <option value="">Lütfen seçin</option>
+                            <option value="not_using">Artık kullanmıyorum</option>
+                            <option value="privacy">Gizlilik endişeleri</option>
+                            <option value="alternative">Başka bir hizmet kullanıyorum</option>
+                            <option value="technical">Teknik sorunlar</option>
+                            <option value="other">Diğer</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="comments">Ek Açıklama (Opsiyonel)</label>
+                        <textarea id="comments" name="comments" placeholder="Varsa ek açıklamalarınızı buraya yazabilirsiniz..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Hesap Silme Talebi Gönder</button>
+                </form>
+            </div>
+
+            <div class="info-box">
+                <p><strong>ℹ️ Bilgi:</strong> Hesap silme talebiniz alındıktan sonra, e-posta adresinize bir onay mesajı göndereceğiz. Talebi onayladıktan sonra hesabınız 30 gün içinde kalıcı olarak silinecektir.</p>
+            </div>
+
+            <h2>Silinecek Veriler</h2>
+            <p>Hesabınız silindiğinde aşağıdaki veriler kalıcı olarak silinecektir:</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Veri Türü</th>
+                        <th>Açıklama</th>
+                        <th>Silme Süresi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Kişisel Bilgiler</strong></td>
+                        <td>Ad, soyad, telefon, e-posta</td>
+                        <td>Hemen</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Adres Bilgileri</strong></td>
+                        <td>Teslimat ve fatura adresleri</td>
+                        <td>Hemen</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ödeme Bilgileri</strong></td>
+                        <td>Kayıtlı kart bilgileri (son 4 hane)</td>
+                        <td>Hemen</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Favori Listeler</strong></td>
+                        <td>Favori ürünler ve listeler</td>
+                        <td>Hemen</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Uygulama Tercihleri</strong></td>
+                        <td>Bildirim ayarları, tema vb.</td>
+                        <td>Hemen</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Oturum Verileri</strong></td>
+                        <td>Login token'ları, session bilgileri</td>
+                        <td>Hemen</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Saklanan Veriler ve Saklama Süreleri</h2>
+            <p>Yasal yükümlülükler ve ticari kayıt gereksinimleri nedeniyle aşağıdaki veriler belirtilen süre boyunca saklanır:</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Veri Türü</th>
+                        <th>Saklama Nedeni</th>
+                        <th>Saklama Süresi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Sipariş Kayıtları</strong></td>
+                        <td>Vergi Kanunu, Ticaret Kanunu</td>
+                        <td>10 yıl</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fatura Bilgileri</strong></td>
+                        <td>Vergi Kanunu</td>
+                        <td>10 yıl</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ödeme İşlem Kayıtları</strong></td>
+                        <td>Bankacılık Kanunu, Mali Mevzuat</td>
+                        <td>10 yıl</td>
+                    </tr>
+                    <tr>
+                        <td><strong>İletişim Kayıtları</strong></td>
+                        <td>Tüketici Kanunu, Ticari İletişim</td>
+                        <td>3 yıl</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Müşteri Şikayetleri</strong></td>
+                        <td>Tüketici Hakem Heyeti Kararları</td>
+                        <td>3 yıl</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="warning-box">
+                <p><strong>📋 Not:</strong> Saklanan veriler anonim hale getirilir ve yalnızca yasal zorunluluklar için saklanır. Bu veriler hiçbir pazarlama veya operasyonel amaç için kullanılmaz.</p>
+            </div>
+
+            <h2>Hesap Silme Sonrası</h2>
+            <ul>
+                <li>Hesabınız silindikten sonra aynı e-posta veya telefon numarası ile tekrar kayıt olabilirsiniz</li>
+                <li>Aktif siparişleriniz varsa, önce siparişlerinizin tamamlanmasını beklemeniz gerekir</li>
+                <li>Bekleyen ödeme veya iade işlemleri tamamlanana kadar hesap silme işlemi askıya alınır</li>
+                <li>Silinen veriler geri getirilemez</li>
+                <li>Hesabınız silendiğinde e-posta ile bilgilendirilirsiniz</li>
+            </ul>
+
+            <h2>İptal Süresi</h2>
+            <div class="info-box">
+                <p><strong>30 Günlük İptal Penceresi:</strong> Hesap silme talebinizden sonra 30 gün içinde fikrinizi değiştirirseniz, destek@hepiyiol.com adresine e-posta göndererek işlemi iptal edebilirsiniz. 30 gün sonra hesabınız kalıcı olarak silinir ve geri getirilemez.</p>
+            </div>
+
+            <h2>Yasal Haklar</h2>
+            <p>6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında:</p>
+            <ul>
+                <li>Kişisel verilerinizin silinmesini talep etme hakkına sahipsiniz</li>
+                <li>İşlenen verilerin üçüncü kişilere bildirilmesini isteme hakkınız vardır</li>
+                <li>Silme işlemi hakkında bilgi alma hakkınız bulunmaktadır</li>
+                <li>KVKK kapsamında Kişisel Verileri Koruma Kurulu'na başvuru hakkınız saklıdır</li>
+            </ul>
+
+            <div class="contact-info">
+                <h2>İletişim ve Destek</h2>
+                <p>Hesap silme işlemi veya veri koruma konusunda sorularınız için:</p>
+                <ul>
+                    <li><strong>E-posta:</strong> destek@hepiyiol.com</li>
+                    <li><strong>Telefon:</strong> 0850 XXX XX XX</li>
+                    <li><strong>KVKK Başvuru:</strong> kvkk@hepiyiol.com</li>
+                    <li><strong>Web:</strong> www.hepiyiol.com</li>
+                    <li><strong>Mesai Saatleri:</strong> Pazartesi-Cuma 09:00-18:00</li>
+                </ul>
+                <p><strong>Ortalama Yanıt Süresi:</strong> 2-3 iş günü</p>
+            </div>
+        </div>
+
+        <!-- ENGLISH CONTENT -->
+        <div class="lang-en">
+            <h1>Account Deletion Request</h1>
+            <p class="update-date">Last Updated: March 9, 2026</p>
+
+            <div class="warning-box">
+                <p><strong>⚠️ Important Warning:</strong> Deleting your account is a permanent action and cannot be undone. All data associated with your account will be deleted. Please think carefully before proceeding.</p>
+            </div>
+
+            <h2>Account Deletion Process</h2>
+            <p>To delete your Hepiyiol account, you can follow these steps:</p>
+
+            <h3>Method 1: Through Mobile App</h3>
+            <ol>
+                <li><span class="step-number">1</span>Open the Hepiyiol mobile app</li>
+                <li><span class="step-number">2</span>Go to your Profile page</li>
+                <li><span class="step-number">3</span>Click on "Account Settings"</li>
+                <li><span class="step-number">4</span>Find the "Delete My Account" option</li>
+                <li><span class="step-number">5</span>Specify your reason for deletion (optional)</li>
+                <li><span class="step-number">6</span>Enter your password to confirm</li>
+                <li><span class="step-number">7</span>Click "Permanently Delete My Account"</li>
+            </ol>
+
+            <h3>Method 2: Email Request</h3>
+            <div class="delete-form">
+                <p><strong>You can request account deletion by filling out the form below:</strong></p>
+                <form id="deleteFormEn">
+                    <div class="form-group">
+                        <label for="emailEn">Your Email Address *</label>
+                        <input type="email" id="emailEn" name="email" required placeholder="example@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phoneEn">Your Phone Number *</label>
+                        <input type="tel" id="phoneEn" name="phone" required placeholder="+90 5XX XXX XX XX">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reasonEn">Deletion Reason (Optional)</label>
+                        <select id="reasonEn" name="reason">
+                            <option value="">Please select</option>
+                            <option value="not_using">No longer using</option>
+                            <option value="privacy">Privacy concerns</option>
+                            <option value="alternative">Using another service</option>
+                            <option value="technical">Technical issues</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="commentsEn">Additional Comments (Optional)</label>
+                        <textarea id="commentsEn" name="comments" placeholder="You can write your additional comments here..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Submit Account Deletion Request</button>
+                </form>
+            </div>
+
+            <div class="info-box">
+                <p><strong>ℹ️ Information:</strong> After receiving your account deletion request, we will send a confirmation message to your email address. Your account will be permanently deleted within 30 days after confirming the request.</p>
+            </div>
+
+            <h2>Data to be Deleted</h2>
+            <p>When your account is deleted, the following data will be permanently removed:</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Data Type</th>
+                        <th>Description</th>
+                        <th>Deletion Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Personal Information</strong></td>
+                        <td>Name, phone, email</td>
+                        <td>Immediately</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Address Information</strong></td>
+                        <td>Delivery and billing addresses</td>
+                        <td>Immediately</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Payment Information</strong></td>
+                        <td>Saved card details (last 4 digits)</td>
+                        <td>Immediately</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Favorite Lists</strong></td>
+                        <td>Favorite products and lists</td>
+                        <td>Immediately</td>
+                    </tr>
+                    <tr>
+                        <td><strong>App Preferences</strong></td>
+                        <td>Notification settings, theme, etc.</td>
+                        <td>Immediately</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Session Data</strong></td>
+                        <td>Login tokens, session info</td>
+                        <td>Immediately</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Retained Data and Retention Periods</h2>
+            <p>Due to legal obligations and commercial record requirements, the following data is retained for the specified period:</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Data Type</th>
+                        <th>Retention Reason</th>
+                        <th>Retention Period</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Order Records</strong></td>
+                        <td>Tax Law, Commercial Law</td>
+                        <td>10 years</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Invoice Information</strong></td>
+                        <td>Tax Law</td>
+                        <td>10 years</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Payment Transaction Records</strong></td>
+                        <td>Banking Law, Financial Regulations</td>
+                        <td>10 years</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Communication Records</strong></td>
+                        <td>Consumer Law, Commercial Communication</td>
+                        <td>3 years</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customer Complaints</strong></td>
+                        <td>Consumer Arbitration Board Decisions</td>
+                        <td>3 years</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="warning-box">
+                <p><strong>📋 Note:</strong> Retained data is anonymized and kept only for legal requirements. This data is not used for any marketing or operational purposes.</p>
+            </div>
+
+            <h2>After Account Deletion</h2>
+            <ul>
+                <li>You can register again with the same email or phone number after your account is deleted</li>
+                <li>If you have active orders, you must wait for them to be completed first</li>
+                <li>Account deletion is suspended until pending payment or refund processes are completed</li>
+                <li>Deleted data cannot be recovered</li>
+                <li>You will be notified by email when your account is deleted</li>
+            </ul>
+
+            <h2>Cancellation Period</h2>
+            <div class="info-box">
+                <p><strong>30-Day Cancellation Window:</strong> If you change your mind within 30 days after your account deletion request, you can cancel the process by sending an email to support@hepiyiol.com. After 30 days, your account will be permanently deleted and cannot be recovered.</p>
+            </div>
+
+            <h2>Legal Rights</h2>
+            <p>Under applicable data protection laws (GDPR/KVKK):</p>
+            <ul>
+                <li>You have the right to request deletion of your personal data</li>
+                <li>You have the right to request notification of processed data to third parties</li>
+                <li>You have the right to receive information about the deletion process</li>
+                <li>Your right to appeal to the Data Protection Authority is reserved</li>
+            </ul>
+
+            <div class="contact-info">
+                <h2>Contact and Support</h2>
+                <p>For questions about account deletion or data protection:</p>
+                <ul>
+                    <li><strong>Email:</strong> support@hepiyiol.com</li>
+                    <li><strong>Phone:</strong> +90 850 XXX XX XX</li>
+                    <li><strong>Data Protection:</strong> privacy@hepiyiol.com</li>
+                    <li><strong>Web:</strong> www.hepiyiol.com</li>
+                    <li><strong>Business Hours:</strong> Monday-Friday 09:00-18:00</li>
+                </ul>
+                <p><strong>Average Response Time:</strong> 2-3 business days</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2026 Hepiyiol. <span class="lang-tr">Tüm hakları saklıdır.</span><span class="lang-en">All rights reserved.</span></p>
+        </div>
+    </div>
+
+    <script>
+        function switchLanguage(lang) {
+            const allTr = document.querySelectorAll('.lang-tr');
+            const allEn = document.querySelectorAll('.lang-en');
+            const allButtons = document.querySelectorAll('.lang-btn');
+
+            if (lang === 'tr') {
+                allTr.forEach(el => el.style.display = 'block');
+                allEn.forEach(el => el.style.display = 'none');
+                document.documentElement.lang = 'tr';
+            } else {
+                allTr.forEach(el => el.style.display = 'none');
+                allEn.forEach(el => el.style.display = 'block');
+                document.documentElement.lang = 'en';
+            }
+
+            allButtons.forEach(btn => {
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Handle form submission
+        document.getElementById('deleteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const reason = document.getElementById('reason').value;
+            const comments = document.getElementById('comments').value;
+            
+            const subject = 'Hesap Silme Talebi';
+            const body = `Merhaba Hepiyiol Destek Ekibi,
+
+Hesabımın silinmesini talep ediyorum.
+
+E-posta: ${email}
+Telefon: ${phone}
+Silme Nedeni: ${reason || 'Belirtilmedi'}
+Ek Açıklama: ${comments || 'Yok'}
+
+Lütfen hesabımı kalıcı olarak silin.
+
+Teşekkürler.`;
+
+            window.location.href = `mailto:destek@hepiyiol.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        });
+
+        document.getElementById('deleteFormEn').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('emailEn').value;
+            const phone = document.getElementById('phoneEn').value;
+            const reason = document.getElementById('reasonEn').value;
+            const comments = document.getElementById('commentsEn').value;
+            
+            const subject = 'Account Deletion Request';
+            const body = `Hello Hepiyiol Support Team,
+
+I request the deletion of my account.
+
+Email: ${email}
+Phone: ${phone}
+Deletion Reason: ${reason || 'Not specified'}
+Additional Comments: ${comments || 'None'}
+
+Please permanently delete my account.
+
+Thank you.`;
+
+            window.location.href = `mailto:support@hepiyiol.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        });
+
+        // Load saved language preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'tr';
+            switchLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>
